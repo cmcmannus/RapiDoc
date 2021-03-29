@@ -139,7 +139,7 @@ export function getSampleValueByType(schemaObj) {
   }
   const typeValue = Array.isArray(schemaObj.type) ? schemaObj.type[0] : schemaObj.type;
 
-  if (typeValue.match(/^integer|^number/g)) {
+  if (typeValue?.match(/^integer|^number/g)) {
     const multipleOf = Number.isNaN(Number(schemaObj.multipleOf)) ? undefined : Number(schemaObj.multipleOf);
     const maximum = Number.isNaN(Number(schemaObj.maximum)) ? undefined : Number(schemaObj.maximum);
     const minimumPossibleVal = Number.isNaN(Number(schemaObj.minimum))
@@ -156,9 +156,9 @@ export function getSampleValueByType(schemaObj) {
       : minimumPossibleVal;
     return finalVal;
   }
-  if (typeValue.match(/^boolean/g)) { return false; }
-  if (typeValue.match(/^null/g)) { return null; }
-  if (typeValue.match(/^string/g)) {
+  if (typeValue?.match(/^boolean/g)) { return false; }
+  if (typeValue?.match(/^null/g)) { return null; }
+  if (typeValue?.match(/^string/g)) {
     if (schemaObj.enum) { return schemaObj.enum[0]; }
     if (schemaObj.pattern) { return schemaObj.pattern; }
     if (schemaObj.format) {
